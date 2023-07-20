@@ -1,0 +1,61 @@
+create database management;
+use management;
+create table students (roll_number int not null, name varchar(12) , class varchar(23) , address varchar(23));
+insert into  students(roll_number,name,class,address) values(12,'rohan','5th','mohan nagar');
+insert into  students(roll_number,name,class,address) values(22,'rohan','5th','mohan nagar');
+insert into  students(roll_number,name,class,address) values(34,'rohan','5th','mohan nagar');
+select * from students;
+show databases;
+select * from students;
+
+rename table students to student;  
+
+truncate table student;
+insert into students ( roll_number,name ,class,address) values ( 5, 'temma', '1st', 'new delhi') , ( 4, 'seema', '2st', ' delhi');
+insert into students ( roll_number,name ,class,address)
+    -> values ( 1, 'hemma', '1st', 'new delhi') , ( 2, 'reema', '2st', ' delhi');
+    
+select * from students;   
+create table clone_students like students;
+insert into clone_students select * from students;
+
+
+create temporary table ssd (id int not null ,name varchar(23), detail varchar(23));
+insert into ssd ( id,name,detail)
+    -> values 
+    -> (1,'shop','mechanical');
+    
+select * from ssd;
+ 
+ exit;
+ 
+ mysql -u root -p
+use management;
+select *from ssd;
+ERROR 1146 (42S02): Table 'management.ssd' doesn't exist
+
+create temporary table ssd(id int not null ,name varchar(23), detail varchar(23));
+insert into ssd ( id,name,detail) values  (1,'shop','mechanical');
+
+drop table ssd;
+
+select * from students;
+
+alter table students drop class;
+
+select * from students;
+
+alter table students add class varchar(12);
+
+select * from students;
+
+alter table students change roll_number r_number int;
+
+select * from students;
+
+alter table students add sr_number int after name ;
+
+elect * from students;
+
+    
+    
