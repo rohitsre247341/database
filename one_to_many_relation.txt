@@ -1,0 +1,57 @@
+create table students_table (
+    -> student_id int not null primary key,
+    -> student_name varchar(23),
+    -> age int ,
+    -> grade varchar(3));
+    
+    insert into students_table(student_id,student_name,age,grade) values (1,'hamesh',23,'a');
+    insert into students_table(student_id,student_name,age,grade) values (2,'ritik',25,'b');
+    insert into students_table(student_id,student_name,age,grade) values (3,'sitik',25,'b');
+create table courses_table (course_id int not null primary key , course_name varchar(23), instructor varchar(12), schedule varchar(23)
+    -> , student_id int not null,
+    -> foreign key(student_id) references students_table(student_id));
+    
+    insert into courses_table(course_id , course_name,instructor,schedule , student_id) values  (1 , 'b tech','ramesh','first',1), (2, ' m
+tech',' sudesh','second',1), (3, ' ba ',' rekha','second',3), (4, ' b arch ',' sudha','second',3), (5, ' m tech',' ramesh','second',3);
+
+select students_table.student_name , courses_table.course_name,courses_table.instructor from students_table inner join courses_table on students_table.student_id = courses_table.student_id;
+
+many to many relationship
+
+create table authors_table(
+    -> author_id int not null primary key,
+    -> author_name varchar(23),
+    -> birth_year int,
+    -> country varchar(12));
+    
+    create books_table(
+    -> book_id int not null primary key,
+    -> title varchar(12) ,
+    -> publication_year int,
+    -> isbn varchar(12));
+    
+    insert into books_table(book_id,title,publication_year, isbn) values (1,"natural",2023,'nothing'), (2,'earth',2022,'nothing'), (3 , 'history',2022,'nothing');
+    
+    insert into authors_table (author_id,author_name,birth_year,country) values (1,'herry',1999,'india'), (2,'poter',1998,'america'), (3,'sigma',1888,'iran');
+    
+    create table  books_authors(sr_number int not null primary key, palace varchar(12), book_id int not null, author_id int not null, foreign key(book_id) references books_table(book_id), foreign key(author_id) references authors_table(author_id));
+    
+     insert into books_authors (sr_number , book_id , author_id,palace) values (1,1,2,'delhi') ,(2,2,1,'mumbai'), (3,1,2,'goa');
+     
+      insert into books_authors (sr_number , book_id , author_id,palace) values (1,1,2,'delhi') ,(2,2,1,'mumbai'), (3,1,2,'goa');
+      
+      select authors_table.author_name,authors_table.country,books_authors.palace,books_table.title from books_table inner join authors_table on books_table.book_id = authors_table.author_id inner join books_authors on books_table.book_id = books_authors.sr_number;
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
