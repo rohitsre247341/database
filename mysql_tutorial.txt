@@ -1,0 +1,72 @@
+create database example_join;
+use example_join;
+create table example_1(id int not null primary key , name varchar(23), address  varchar(23) );
+desc example_1;
+alter table example_1 rename to student;
+create table exam(id int not null primary key,ids int not null , subject varchar(23), date_of_exam date, foreign key(ids) references student(id) );
+insert into student(id, name, address) values (1, 'rohan','meerut') , (2, 'sohan', 'saharanpur'), (3, 'kumar', 'delhi');
+insert into exam(id , ids, subject,date_of_exam) values( 1,1,'english','2022-09-7'), (2,2,'math',' 2022-09-8');
+select *from exam;
+select *from student;
+select s.name , e.subject,s.address from student s  inner join exam e on s.id = e.ids;
+select s.id , s.name , e.subject,s.address from student s  inner join exam e on s.id = e.ids;
+select s.id , s.name , e.subject,s.address from student s left join exam e on s.id = e.ids;
+select s.id , s.name , e.subject,s.address from student s right join exam e on s.id = e.ids;
+
+regular expression in mysql
+select * from student where name regexp 'k.';
+select * from student where name regexp 's.';
+ select * from student where name regexp '^so';
+ select * from student where name regexp '^ku';
+ select * from student where name regexp 'an$'
+ select * from student where name regexp 'ar$';
+select * from student where name regexp 'r$';
+select * from student where name regexp 'ro*';
+select * from student where name regexp 'ro';
+select * from student where name regexp '[r]';
+select * from student where name regexp '[ra]';
+
+select * from student where name regexp '[ra]o';
+
+index 
+
+create index sr on student (name);
+
+select * from student where name regexp 'ro*';
+select * from student where name regexp 'ro';
+select * from student where name regexp '[r]';
+select * from student where name regexp '[ra]';
+
+temporary table in mysql 
+
+create temporary table ssm( id int , name varchar(23),address varchar(23));
+insert into ssm(id , name,address)
+    -> values 
+    -> (1,'himmo', 'meerut'),
+    -> (2,'summo','saharanpur');
+    
+     select * from ssm;
+     
+exit;
+
+select * from ssm;
+
+ERROR 1146 (42S02): Table 'example_join.ssm' doesn't exist
+
+we can drop it  using 
+drop table ssm;
+
+create table samm(id int not null auto_increment primary key, name varchar(23),address varchar(23));
+insert into samm ( name,address) values('rohhi','meerut');
+select * from samm;
+
+insert into samm(name,address)
+    -> values('emmy','new delhi');
+select * from samm;
+
+
+
+     
+     
+
+
